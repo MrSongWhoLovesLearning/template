@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootproject.tuser.dao.TUsersDao">
+
+    <resultMap type="com.example.springbootproject.tuser.entity.TUsersEntity" id="TUsersMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="logingId" column="loging_id" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="desPassword" column="des_password" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="userState" column="user_state" jdbcType="INTEGER"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="createUserId" column="create_user_id" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUserId" column="update_user_id" jdbcType="VARCHAR"/>
+        <result property="departmentId" column="department_id" jdbcType="VARCHAR"/>
+        <result property="departmentName" column="department_name" jdbcType="VARCHAR"/>
+        <result property="surname" column="surname" jdbcType="VARCHAR"/>
+        <result property="commonName" column="common_name" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="identificationNumber" column="identification_number" jdbcType="VARCHAR"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+        <result property="userType" column="user_type" jdbcType="INTEGER"/>
+        <result property="tenantId" column="tenant_id" jdbcType="INTEGER"/>
+        <result property="foId" column="fo_id" jdbcType="VARCHAR"/>
+        <result property="validityTime" column="validity_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="TUsersSql">
+        id, loging_id, password, des_password, name, email, user_state, icon, create_time, create_user_id, update_time, update_user_id, department_id, department_name, surname, common_name, phone, birthday, sex, address, identification_number, remarks, user_type, tenant_id, fo_id, validity_time    </sql>
+
+    <!--查询单个-->
+    <select id="getById" resultMap="TUsersMap">
+        select
+        <include refid="TUsersSql"/>
+        from t_users
+        where  id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="getAllByLimit" resultMap="TUsersMap">
+        select
+        <include refid="TUsersSql"/>
+        from t_users
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="logingId != null and logingId != ''">
+                and loging_id = #{logingId}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="desPassword != null and desPassword != ''">
+                and des_password = #{desPassword}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="userState != null">
+                and user_state = #{userState}
+            </if>
+            <if test="icon != null and icon != ''">
+                and icon = #{icon}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                and create_user_id = #{createUserId}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                and update_user_id = #{updateUserId}
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                and department_id = #{departmentId}
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                and department_name = #{departmentName}
+            </if>
+            <if test="surname != null and surname != ''">
+                and surname = #{surname}
+            </if>
+            <if test="commonName != null and commonName != ''">
+                and common_name = #{commonName}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="identificationNumber != null and identificationNumber != ''">
+                and identification_number = #{identificationNumber}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and remarks = #{remarks}
+            </if>
+            <if test="userType != null">
+                and user_type = #{userType}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="foId != null and foId != ''">
+                and fo_id = #{foId}
+            </if>
+            <if test="validityTime != null">
+                and validity_time = #{validityTime}
+            </if>
+        </where>
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="getAll" resultMap="TUsersMap">
+        select
+        <include refid="TUsersSql"/>
+        from t_users
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="logingId != null and logingId != ''">
+                and loging_id = #{logingId}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="desPassword != null and desPassword != ''">
+                and des_password = #{desPassword}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="userState != null">
+                and user_state = #{userState}
+            </if>
+            <if test="icon != null and icon != ''">
+                and icon = #{icon}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                and create_user_id = #{createUserId}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                and update_user_id = #{updateUserId}
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                and department_id = #{departmentId}
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                and department_name = #{departmentName}
+            </if>
+            <if test="surname != null and surname != ''">
+                and surname = #{surname}
+            </if>
+            <if test="commonName != null and commonName != ''">
+                and common_name = #{commonName}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="identificationNumber != null and identificationNumber != ''">
+                and identification_number = #{identificationNumber}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and remarks = #{remarks}
+            </if>
+            <if test="userType != null">
+                and user_type = #{userType}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="foId != null and foId != ''">
+                and fo_id = #{foId}
+            </if>
+            <if test="validityTime != null">
+                and validity_time = #{validityTime}
+            </if>
+        </where>
+    </select>
+
+    <!--动态新增-->
+    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+        insert into t_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="logingId != null and logingId != ''">
+                loging_id,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="desPassword != null and desPassword != ''">
+                des_password,
+            </if>
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="userState != null">
+                user_state,
+            </if>
+            <if test="icon != null and icon != ''">
+                icon,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id,
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                department_id,
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                department_name,
+            </if>
+            <if test="surname != null and surname != ''">
+                surname,
+            </if>
+            <if test="commonName != null and commonName != ''">
+                common_name,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="sex != null and sex != ''">
+                sex,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="identificationNumber != null and identificationNumber != ''">
+                identification_number,
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="foId != null and foId != ''">
+                fo_id,
+            </if>
+            <if test="validityTime != null">
+                validity_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id},
+            </if>
+            <if test="logingId != null and logingId != ''">
+                #{logingId},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="desPassword != null and desPassword != ''">
+                #{desPassword},
+            </if>
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="userState != null">
+                #{userState},
+            </if>
+            <if test="icon != null and icon != ''">
+                #{icon},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                #{createUserId},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                #{updateUserId},
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                #{departmentId},
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                #{departmentName},
+            </if>
+            <if test="surname != null and surname != ''">
+                #{surname},
+            </if>
+            <if test="commonName != null and commonName != ''">
+                #{commonName},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+            <if test="birthday != null">
+                #{birthday},
+            </if>
+            <if test="sex != null and sex != ''">
+                #{sex},
+            </if>
+            <if test="address != null and address != ''">
+                #{address},
+            </if>
+            <if test="identificationNumber != null and identificationNumber != ''">
+                #{identificationNumber},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                #{remarks},
+            </if>
+            <if test="userType != null">
+                #{userType},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="foId != null and foId != ''">
+                #{foId},
+            </if>
+            <if test="validityTime != null">
+                #{validityTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="upd">
+        update t_users
+        <set>
+            <if test="logingId != null and logingId != ''">
+                loging_id = #{logingId},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="desPassword != null and desPassword != ''">
+                des_password = #{desPassword},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="userState != null">
+                user_state = #{userState},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id = #{createUserId},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id = #{updateUserId},
+            </if>
+            <if test="departmentId != null and departmentId != ''">
+                department_id = #{departmentId},
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                department_name = #{departmentName},
+            </if>
+            <if test="surname != null and surname != ''">
+                surname = #{surname},
+            </if>
+            <if test="commonName != null and commonName != ''">
+                common_name = #{commonName},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="identificationNumber != null and identificationNumber != ''">
+                identification_number = #{identificationNumber},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks = #{remarks},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="foId != null and foId != ''">
+                fo_id = #{foId},
+            </if>
+            <if test="validityTime != null">
+                validity_time = #{validityTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="delById">
+        delete from t_users where id = #{id}
+    </delete>
+
+    <!--通过主键逻辑删除-->
+    <delete id="logicDelById">
+        update t_users set user_state = '2' where id = #{id}
+    </delete>
+
+</mapper>

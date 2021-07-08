@@ -1,0 +1,19 @@
+
+server:
+  port: 8080
+
+
+# mysql
+spring:
+  # 环境 dev|stg|te|fat|matrix
+  profiles:
+    active: #spring.profiles.active#
+    include: dev
+
+# Mybatis配置
+mybatis:
+  mapperLocations: classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+swagger:
+  enable: true
